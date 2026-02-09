@@ -275,7 +275,7 @@ Folgende Arbeiten müssen gemacht werden:
 ***
 Für das weitere Vorgehen wird eine System-Abbild-Datei benötigt. Dazu laden wir in unserem Fall das Image von Ubuntu **Desktop** herunter. Wie das genau funktioniert, wird nachfolgend beschrieben:
 
-1. Das Systemabbild (ISO-Image) über [diesen Link](https://www.ubuntu.com/#download) herunterladen. 
+1. Das Systemabbild (ISO-Image) über [diesen Link](https://mirror.init7.net/ubuntu-releases/24.04.3/) herunterladen. 
 Wenn der Download zu lange geht USB Stick vom Lehrer erfragen.
 Nutzen Sie Wartezeiten produktiv, zum Beispiel um Ihre Lernumgebung einzurichten und neues und unbekanntes zu entdecken (siehe 06 - [Quellenverzeichnis](#-06---quellenverzeichnis)).
 2. Datei im gewünschten Verzeichnis auf Ihrem persönlichen Notebook ablegen (damit das Image wiederverwendet werden kann)
