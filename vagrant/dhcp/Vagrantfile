@@ -1,0 +1,59 @@
+Vagrant.configure("2") do |config|
+
+  # Ubuntu 20.x
+  config.vm.box = "ubuntu/bionic64"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "512"  
+  end
+
+  config.vm.define "master" do |master|
+    master.vm.network "private_network", ip: "192.168.50.2", virtualbox__dhcp_server: false
+    master.vm.hostname = "master"
+    master.vm.provision "shell", inline: <<-SHELL 
+        # Debug ON!!!
+        set -o xtrace
+        sudo apt-get update
+        sudo apt install -y isc-dhcp-server bind9 dnsutils traceroute nmap
+        # DHCP Server
+        cat <<%EOF% | sudo tee -a /etc/dhcp/dhcpd.conf
+subnet 192.168.50.0 netmask 255.255.255.0 {
+ range 192.168.50.20 192.168.50.100;
+ option routers 192.168.50.254;
+ option domain-name-servers 192.168.50.1;
+ option domain-name "mydomain.example";
+}
+%EOF%
+        sudo sed -i -e 's/INTERFACES=""/INTERFACES="enp0s8"/g' /etc/default/isc-dhcp-server
+        sudo systemctl restart isc-dhcp-server.service  
+        # DNS Server
+        sudo cp /vagrant/named.conf.local /etc/bind/
+        sudo cp /vagrant/db.example.com /vagrant/db.192  /var/lib/bind/
+        sudo systemctl restart bind9.service
+    SHELL
+  end
+
+  config.vm.define "worker1" do |w1|
+    w1.vm.network "private_network", type: "dhcp",  name: "vboxnet0", virtualbox__dhcp_server: false
+    w1.vm.hostname = "worker1"
+    w1.vm.provision "shell", inline: <<-SHELL 
+        # Debug ON!!!
+        set -o xtrace
+        sudo apt-get update
+        sudo apt install -y dnsutils traceroute nmap       
+        ifconfig
+    SHELL
+  end
+
+  config.vm.define "worker2" do |w2|
+    w2.vm.network "private_network", type: "dhcp",  name: "vboxnet0", virtualbox__dhcp_server: false
+    w2.vm.hostname = "worker2"
+    w2.vm.provision "shell", inline: <<-SHELL 
+        # Debug ON!!!
+        set -o xtrace
+        sudo apt-get update
+        sudo apt install -y dnsutils traceroute nmap          
+        ifconfig
+    SHELL
+  end  
+end
