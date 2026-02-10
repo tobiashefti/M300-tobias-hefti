@@ -516,10 +516,6 @@ Nach dem Releasen der Box kann diese in beliebigen Vagrantfile(s) verwendet werd
 ### Alternative Boxen
 ***
 
-**Vorgefertigte VMs bzw. Vagrant Boxen** <br>
-Microsoft stellt zu Testzwecken ihrer verschiedenen Browser (z.B. MS Edge) Versionen vorgefertigter Boxen mit Windows zur Verfügung.
-
-Diese sind via https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/ downloadbar.
 
 **Mittels VM Installation** <br>
 Für alle anderen Betriebssysteme ist die jeweilige ISO-Datei herunterzuladen, eine neue VM zu erstellen und als CD-ROM Laufwerk die ISO-Datei einzubinden. Anschliessend kann das entsprechende Betriebssystem normal installiert werden.
