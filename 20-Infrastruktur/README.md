@@ -13,15 +13,15 @@ Sie können eine Dynamischen Infrastruktur-Plattform (Private Cloud) einrichten,
 
 #### Inhaltsverzeichnis
 
-* 01 - [Cloud Computing](#-01---cloud-computing)
-* 02 - [Infrastructure as Code](#-02---infrastructure-as-code)
-* 03 - [Vagrant](#-03---vagrant)
-* 04 - [Packer (optional)](#-04---packer)
-* 05 - [AWS Cloud (optional)](#-05---aws-cloud)
-* 06 - [Reflexion](#-06---reflexion)
+* 01 - [Cloud Computing](#01---cloud-computing)
+* 02 - [Infrastructure as Code](#02---infrastructure-as-code)
+* 03 - [Vagrant](#03---vagrant)
+* 04 - [Packer (optional)](#04---packer)
+* 05 - [AWS Cloud (optional)](#05---aws-cloud)
+* 06 - [Reflexion](#06---reflexion)
 * 07 - [Fragen](Fragen.md)
-* 08 - [Quellenverzeichnis](#-08---quellenverzeichnis)
-* 09 - [Beispiele (für LB2)](#-09---beispiele-für-lb2)
+* 08 - [Quellenverzeichnis](#08---quellenverzeichnis)
+* 09 - [Beispiele (für LB2)](#09---beispiele-für-lb2)
 * 10 - [LB 2 hands-on](LB2.md)
 * 11 - [Mögliche Serverdienste für die Automatisierung](https://wiki.ubuntuusers.de/Serverdienste/)
 
@@ -189,14 +189,14 @@ Die wichtigsten Befehle sind:
 | `vagrant halt`            | Stoppt die laufende Virtuelle Maschine                            |
 | `vagrant destroy`         | Stoppt die Virtuelle Maschine und zerstört sie.                   |
 
-Weitere Befehle unter: https://www.vagrantup.com/docs/cli/
+Weitere Befehle unter: https://developer.hashicorp.com/vagrant/docs/cli
 
 **Boxen** <br>
 Boxen sind bei Vagrant vorkonfigurierte VMs (Vorlagen). Diese sollen den Prozess der Softwareverteilung und der Entwicklung beschleunigen. Jede Box, die von dem Nutzer benutzt wurde, wird auf dem Computer gespeichert und muss so nicht wieder aus dem Internet geladen werden.
 
 Boxen können explizit durch den Befehl `vagrant box add [box-name]` oder `vagrant box add [box-url]` heruntergeladen und durch `vagrant box remove [box-name]` entfernt werden. Ein "box-name" ist dabei durch Konvention wie folgt aufgebaut: *Entwickler/Box* (z.B. ubuntu/xenial64).
 
-Die [Vagrant Boxen-Plattform](https://app.vagrantup.com/boxes/search) dient dabei als Austauschstelle für die Suche nach Boxen und das Publizieren von eigenen Boxen. 
+Die [Vagrant Boxen-Plattform](https://portal.cloud.hashicorp.com/vagrant/discover) dient dabei als Austauschstelle für die Suche nach Boxen und das Publizieren von eigenen Boxen. 
 
 **Konfiguration** <br>
 Die gesamte Konfiguration erfolgt im Vagrantfile, das im entsprechenden Verzeichnis liegt. Die Syntax ist dabei an die Programmiersprache Ruby) angelehnt:
