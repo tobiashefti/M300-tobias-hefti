@@ -269,7 +269,7 @@ oder
 **VM löschen** <br>
 Die VM kann wie folgt gelöscht werden:
 ```Shell
-      7vagrant destroy -f
+      vagrant destroy -f
 ```
 
 
