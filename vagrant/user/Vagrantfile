@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "database" do |db|
     db.vm.box = "ubuntu/xenial64"
 	db.vm.provider "virtualbox" do |vb|
+    vb.cpus = "4"
 	  vb.memory = "2048"  
 	end
     db.vm.hostname = "db01"
@@ -28,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web.vm.network "private_network", ip:"192.168.55.101"
 	web.vm.network "forwarded_port", guest:80, host:8080, auto_correct: true
 	web.vm.provider "virtualbox" do |vb|
+    vb.cpus = "4"
 	  vb.memory = "2048"  
 	end     
   	web.vm.synced_folder ".", "/var/www/html"  
@@ -38,17 +40,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	  sudo sed -i -e"s/^PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
 	  sudo service sshd restart
 SHELL
-	end 
-	# User und Gruppen in alle VM hinzufuegen
-	config.vm.provision "shell", inline: <<-SHELL
-	  echo '127.0.0.1 localhost web01\n192.168.55.100 db01' > /etc/hosts
-      sudo groupadd myadmin
-      sudo useradd admin01 -g myadmin -m -s /bin/bash 
-      sudo useradd admin02 -g myadmin -m -s /bin/bash 
-      sudo chpasswd <<<admin01:admin
-      sudo chpasswd <<<admin02:admin
-	  #  enable tunnelled clear text passwords
-	  sudo sed -i -e"s/^PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
-	  sudo service sshd restart
+  end 
+  # User und Gruppen in alle VM hinzufuegen
+  config.vm.provision "shell", inline: <<-SHELL
+    echo '127.0.0.1 localhost web01\n192.168.55.100 db01' > /etc/hosts
+    sudo groupadd myadmin
+    sudo useradd admin01 -g myadmin -m -s /bin/bash 
+    sudo useradd admin02 -g myadmin -m -s /bin/bash 
+    sudo chpasswd <<<admin01:admin
+    sudo chpasswd <<<admin02:admin
+    sudo mkdir -p /home/admin01/.ssh 
+    sudo chmod 700 /home/admin01/.ssh 
+    sudo chown admin01 /home/admin01/.ssh 
+    sudo -u admin01 ssh-keygen -t rsa -b 4096 -f /home/admin01/.ssh/id_rsa -N ""
+    sudo mkdir -p /home/admin02/.ssh 
+    sudo chmod 700 /home/admin02/.ssh 
+    sudo chown admin02 /home/admin02/.ssh 
+    sudo -u admin02 ssh-keygen -t rsa -b 4096 -f /home/admin02/.ssh/id_rsa -N ""
+    #  enable tunnelled clear text passwords
+    sudo sed -i -e"s/^PasswordAuthentication no/PasswordAuthentication yes/" /etc/ssh/sshd_config
+    sudo service sshd restart
 SHELL
- end
+  end

@@ -62,16 +62,18 @@ UFW steht für `Uncomplicated Firewall`. Ziel von UFW ist es, ein unkomplizierte
 ```
 
 **Firewall-Regeln**
+> **WICHTIG**
+> Ohne die Regel für Port 22 sperren Sie sich aus de VM aus!
 ```Shell
-    # Port 80 (HTTP) öffnen für alle
-    vagrant ssh web
-    sudo ufw allow 80/tcp
-    exit
-
     # Port 22 (SSH) nur für den Host (wo die VM laufen) öffnen
     vagrant ssh web
     w
     sudo ufw allow from [Meine-IP] to any port 22
+    exit
+
+    # Port 80 (HTTP) öffnen für alle
+    vagrant ssh web
+    sudo ufw allow 80/tcp
     exit
 
     # Port 3306 (MySQL) nur für den web Server öffnen
@@ -370,19 +372,28 @@ Weiterleitung von Port 8000 auf dem lokalen System (database/db01) an den Webser
 	vagrant ssh database
 	# Wechsel auf User admin01
 	sudo su - admin01
-	# in der VM
+	# Public Key auf web01 übertragen
+    ssh-copy-id -i ~/.ssh/id_rsa.pub admin01@web01
+    # Tunnel erstellen
 	ssh -L 8000:localhost:80 web01 -N &
+    # Verbindungen anzeigen
 	netstat -tulpen
+    # Verbindung Testen
 	curl http://localhost:8000
 
 Umgekehrte Richtung. Benutzern auf web/web01 wird ermöglicht, über localhost:3307 auf den MySQL-Server auf database/db01 zuzugreifen:
 
-	vagrant ssh database
-	# in der VM database
-	ssh -R 3307:localhost:3306 web01 -N &
-	ssh web01
-	# in der VM web
+	cd user
+	vagrant ssh web
+	# Wechsel auf User admin01
+	sudo su - admin01
+    # Public Key auf db01 übertragen
+    ssh-copy-id -i ~/.ssh/id_rsa.pub admin01@db01
+    # Tunnel erstellen
+	ssh -R 3307:localhost:3306 db01 -N &
+    # Verbindungen anzeigen
 	netstat -tulpen
+    # Verbindung Testen
 	curl http://localhost:3307
 
 	
