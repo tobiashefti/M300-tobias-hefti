@@ -43,6 +43,7 @@ Sie dürfen bis am Mittwoch, 25. Februar, 2026 um 23:59 am GitHub-Repository arb
 * [30 Container](30-Container/README.md)
 * [35 Sicherheit](35-Sicherheit/README.md)
 * [40 Kubernetes (k8s)](40-Kubernetes/README.md)
+* [50 Projekte](50-Projekte/README.md)
 * [80 Ergänzungen zu den Unterlagen](80-Ergaenzungen/README.md)
 
 ### Voraussetzungen
