@@ -64,7 +64,7 @@ Sie dürfen bis am Mittwoch, 25. Februar, 2026 um 23:59 am GitHub-Repository arb
 
 
 # Kompetenzmatrix
-Basiren auf [Modulbeschreibung](https://www.modulbaukasten.ch/Module/300_4_Plattform%C3%BCbergreifende%20Dienste%20in%20ein%20Netzwerk%20integrieren.pdf)
+Basierend auf [Modulbeschreibung](https://www.modulbaukasten.ch/Module/300_4_Plattform%C3%BCbergreifende%20Dienste%20in%20ein%20Netzwerk%20integrieren.pdf)
 
 | Nr. | Handlungsziele                                                    | Beginner | Intermediate | Advanced |
 |-----|-------------------------------------------------------------------|----------|--------------|----------|
