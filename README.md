@@ -19,6 +19,8 @@ Dokumentieren Sie Ihre Arbeit in einem GitHub-Repository. Schreiben Sie entweder
 
 Wenn Sie nicht weiterkommen, wenden Sie sich an die Lehrperson.
 
+> Hinweis:  
+> Die Markdown Syntax wird [Hier](80-Ergaenzungen/vcs/03-Markdown.md) erklärt.
 
 # Bewertung
 
