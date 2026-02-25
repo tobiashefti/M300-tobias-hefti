@@ -121,4 +121,4 @@ Unterhaltsame Broschüre mit dem Titel ["Phippy Goes to the Zoo – A Kubernetes
 
 Für die Installation verwenden Sie die Anleitung vom Projekt:
 
-* [Kubernetes in Docker](https://github.com/navilg/vagrant-kubernetes)
+* [Kubernetes mit Vagrant](https://github.com/navilg/vagrant-kubernetes)
